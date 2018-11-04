@@ -1,0 +1,90 @@
+@import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css");
+
+.container-app {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+
+.nav-main-tab {
+    width: 70px;
+    height: 100%;
+    background: linear-gradient(180deg, #00dbde, #fc00ff);
+}
+
+.nav-avatar-tab {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;    
+    margin-bottom: 30px;
+}
+
+.avatar-img {
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    background-size: 100% 100%;
+    border: 1px solid white;
+}
+
+.avatar-img:hover {
+    cursor: pointer;
+}
+
+.nav-tabs-top {
+
+}
+
+.tab-top-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tab-top-item {
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    align-items: center;
+}
+
+.tab-selected {
+    background: rgba(0, 0, 0, 0.12);
+}
+.tab-top-item:hover {
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tab-top-item .mess-icon{
+    width: 100%;
+    height: 100%;
+    background-size: 40px 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/icons/icon-chat.png');
+}
+
+.second {
+    width: 20%;
+    height: 100%;
+    background-color: blue;
+}
+
+.third {
+    width: 50%;
+    height: 100%;
+    background-color: red;
+}
+
+.fourth {
+    width: 20%;
+    height: 100%;
+    background-color: burlywood;
+}

@@ -58,7 +58,7 @@
 .btn-google:hover {
     color: #fff;
     transition: all 0.4s;
-    background: linear-gradient(45deg, #00dbde, #fc00ff);;
+    background: linear-gradient(45deg, #00dbde, #fc00ff);
 }
 
 .btn-google-icon-wrapper {
