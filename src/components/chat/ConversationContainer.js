@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
-import MainTab from './MainTab';
-import ConversationView from './ConversationView';
-import MessageView from './MessageView';
 import '../../styles/chat/chat.css';
+// import ConversationItem from './ConversationItem';
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firebaseConnect } from 'react-redux-firebase'
 
-class ContainerApp extends Component {
+class ConversationContainer extends Component {
     
-    componentDidMount() {
-
-    }
-
     render() {
-        console.log(this);
         return (
-            <div className="container-app">
-                <MainTab/>
-                <ConversationView/>
-                <MessageView/>
+            <div className="conversation-container">
+                <div id="title">
+                </div>
+                <div className="conversation-list">
+                </div>
             </div>
         );
     }
@@ -28,4 +22,4 @@ class ContainerApp extends Component {
 export default compose(
     firebaseConnect(), // withFirebase can also be used
     connect(({ firebase: { auth } }) => ({ auth }))
-  )(ContainerApp)
+)(ConversationContainer)
