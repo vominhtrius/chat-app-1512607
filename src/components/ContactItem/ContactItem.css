@@ -1,0 +1,117 @@
+.contact-item {
+    width: inherit;
+    height: 50px;
+    padding: 6px;
+}
+
+.contact-item-wrapper {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+}
+
+.contact-item:hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.contact-avatar {
+    margin-right: 10px;
+}
+
+.contact-avatar-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-size: 100% 100%;
+    border: 1px solid white;
+}
+
+.contact-status-icon {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    left: 40px;
+    top: 34px;
+    bottom: 0;
+    right: 40px;
+    border-radius: 100%;
+    border: 2px solid white;
+}
+
+.online {
+    background-color: rgb(98, 203, 0);
+}
+
+.offline {
+    background-color: gray;
+}
+
+.busy {
+    background-color: red;
+}
+
+
+.contact-info {
+    width: 170px;
+    max-width: 170px;
+    min-width: 170px;
+    white-space: nowrap;
+}
+
+.contact-info .contact-name {
+    font-size: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+    width:inherit;
+    user-select: none;
+}
+
+.contact-info .contact-status-txt {
+    font-size: 14px;
+    color: rgb(122, 134, 154);
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+    width:inherit;
+    user-select: none;
+
+}
+
+.contact-tools {
+    width: 50px;
+    height: inherit;
+}
+
+.tool-star {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.tool-star .star-img {
+    background-image: url("../../images/icons/icon-star.png");
+    background-size: 100% 100%;
+    width: 24px;
+    height: 24px;
+}
+
+.tool-star .star-img:hover {
+    background-image: url("../../images/icons/icon-star-filled.png");
+    background-size: 100% 100%;
+}
+
+.tool-star .star-filled-img {
+    background-image: url("../../images/icons/icon-star-filled.png");
+    background-size: 100% 100%;
+    width: 24px;
+    height: 24px;
+}
+
+.tool-star .star-filled-img:hover {
+    background-image: url("../../images/icons/icon-star.png");
+    background-size: 100% 100%;
+}

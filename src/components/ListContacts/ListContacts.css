@@ -1,0 +1,32 @@
+.contacts-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.contacts-container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+.contacts-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00dbde, #fc00ff);
+    border-radius: 5px;
+}
+
+.list-contacts {
+    width: 320px;
+    height: calc(100vh - 70px - 1px); /*+ 1 cho border*/
+    min-height: calc(100vh - 70px - 1px);
+    max-height: calc(100vh - 70px - 1px);
+    background-color: white;
+    border-radius: 5px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.contacts-container {
+    overflow: hidden;
+    height: 100%;
+}
+
+.contacts-container:hover {
+    overflow-y: auto;
+}

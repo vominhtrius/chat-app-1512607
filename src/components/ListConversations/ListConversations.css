@@ -1,0 +1,36 @@
+.conversations-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.conversations-container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+.conversations-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00dbde, #fc00ff);
+    border-radius: 10px;
+}
+
+.list-conversations {
+    width: 320px;
+    background-color: white;
+    height: calc(100vh - 71px);
+    display: flex;
+    border-radius: 6px;
+}
+
+.non-display {
+    display: none;
+}
+
+.conversations-container {
+    width: inherit;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.conversations-container:hover {
+    overflow-y: auto;
+}

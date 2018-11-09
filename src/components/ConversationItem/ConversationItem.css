@@ -1,0 +1,108 @@
+.conversation-item {
+    padding: 5px;
+}
+
+.conversation-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.conversation-item .item-avatar {
+    margin-right: 10px;
+}
+
+.conversation-item .wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.item-avatar-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-size: 100% 100%;
+    border: 1px solid white;
+}
+
+.item-status-icon {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    left: 40px;
+    top: 34px;
+    bottom: 0;
+    right: 40px;
+    border-radius: 100%;
+    border: 2px solid white;
+}
+
+.conversation-item .item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    width: 150px;
+}
+
+.item-info .username-info {
+    margin-top: 5px;    
+    font-size: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+}
+
+.item-info .content-info {
+    font-size: 14px;
+    color: rgb(122, 134, 154);
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+    width:inherit;
+}
+
+.conversation-item .tool {
+    display: flex;
+    width: inherit;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    margin-left: 10px;
+}
+
+.tool .time {
+    font-size: 13px;
+    white-space: nowrap;
+    color: #899098;
+}
+
+.tool .star {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.star #star-img {
+    background-image: url("../../images/icons/icon-star.png");
+    background-size: 100% 100%;
+    width: 24px;
+    height: 24px;
+}
+
+.star #star-img:hover {
+    background-image: url("../../images/icons/icon-star-filled.png");
+    background-size: 100% 100%;
+}
+
+.star #star-filled-img {
+    background-image: url("../../images/icons/icon-star-filled.png");
+    background-size: 100% 100%;
+    width: 24px;
+    height: 24px;
+}
+
+.star #star-filled-img:hover {
+    background-image: url("../../images/icons/icon-star.png");
+    background-size: 100% 100%;
+}

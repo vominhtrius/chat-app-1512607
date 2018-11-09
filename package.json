@@ -3,17 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^5.5.7",
-    "font-awesome": "^4.7.0",
-    "prop-types": "^15.6.2",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-google-button": "^0.5.3",
-    "react-google-login": "^3.2.1",
-    "react-redux": "^5.1.0",
-    "react-redux-firebase": "^2.1.9",
-    "react-scripts": "2.1.0",
-    "redux": "^4.0.1"
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "react-scripts": "2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
