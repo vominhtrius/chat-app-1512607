@@ -1,4 +1,6 @@
 import firebase from 'firebase';
+export const userProfilesURI = 'userProfiles';
+export const appInfosURI = 'appInfos';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDWaH9W5Uea84O_hIysZXd6NNwXS8quLZA",
@@ -8,5 +10,9 @@ export const firebaseConfig = {
     storageBucket: "chat-1512607.appspot.com",
     messagingSenderId: "372444766008"
 }
+
+export const rrfConfig = {
+    userProfile: userProfilesURI,
+};
 
 export default firebase.initializeApp(firebaseConfig);

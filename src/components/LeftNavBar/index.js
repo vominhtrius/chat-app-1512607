@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './LeftNavBar.css';
+import {onAuthLogout} from '../../functions/authHandle';
+
 
 class LeftNavBar extends Component {
 
@@ -13,8 +15,9 @@ class LeftNavBar extends Component {
     }
 
     onLogoutClick = () => {
-
+        onAuthLogout(this.props.auth);
     }
+    
     onAvatarClick = () => {
         alert('Avatar click');
     }
@@ -35,6 +38,7 @@ class LeftNavBar extends Component {
 
     render() {
         const avatarUrl = "https://f22-org-zp.zdn.vn/009bacc892dc798220cd.jpg";
+        console.log(this);
         return (
             <div className="left-nav-bar">
                 <div className="nav-bar-avatar">
@@ -64,7 +68,8 @@ class LeftNavBar extends Component {
 
                     <div className="nav-bar-bottom">
                         <div className="bottom-list">
-                            <div className="bottom-item logout-item">
+                            <div className="bottom-item logout-item"
+                                onClick={() => this.onLogoutClick()}>
                             </div>
                         </div>
                     </div>

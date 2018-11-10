@@ -8,7 +8,7 @@ class MessageItem extends Component {
         const rightAvatarUrl = "https://f22-org-zp.zdn.vn/009bacc892dc798220cd.jpg";
         const status = 'Đang hoạt động';
         const statusName = "online";
-        console.log(this.props.v);
+
         const isYou = (this.props.v % 2 === 0);
 
         const text = `asdasdsadasdadc
@@ -18,7 +18,7 @@ asdasd`;
                 <div className="message-item">
                     <div className="message-wrapper right">
                         <div className="content-wrapper algin-right">
-                            <span class="text">{text}
+                            <span className="text">{text}
                             </span>
                             <div className="send-time">
                                 1 phút trước
@@ -43,7 +43,7 @@ asdasd`;
                             </div>
                         </div>
                         <div className="content-wrapper algin-left">
-                            <span class="text">{text}
+                            <span className="text">{text}
                             </span>
                             <div className="send-time">
                                 1 phút trước
