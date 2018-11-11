@@ -3,6 +3,7 @@ import './ListContacts.css';
 import ContactItem from '../ContactItem';
 import { isLoaded, isEmpty } from 'react-redux-firebase'
 import Loader from '../Loader';
+import {compareUserWithName, checkUserStar} from '../../functions/helper';
 
 class ListContacts extends Component {
 
@@ -10,23 +11,64 @@ class ListContacts extends Component {
         console.log("Enter, i see you");
     }
 
-    render() {
-        const {users} = this.props;
-        let n = 50;
-        let contactItems = new Array(n).fill(0);
+    handleListContacts = () => {
+        let _usersStar = [];
+        let _userNormal = [];
 
-        const loadDone = isLoaded(users);
+        const { users, stars } = this.props;
+
+        console.log("call here now");
+        console.log(stars);
+
+        _usersStar = users.filter((user) => {
+            return checkUserStar(stars, user);
+        });
+
+        _usersStar.sort(compareUserWithName)
+
+        _userNormal = users.filter((user) => {
+            const uid = user.key;
+
+            if (stars !== null && stars[uid] !== undefined) {
+                return false;
+            }
+
+            return this.props.auth.uid !== uid;
+        });
+
+        _userNormal.sort(compareUserWithName);
+
+        return _usersStar.concat(_userNormal);
+    }
+
+    render() {
+        const { users, stars } = this.props;
+        const loadDone = isLoaded(users) && isLoaded(stars);
+        let _users = [];
+        let _usersNormal = [];
+
+        console.log(this);
+
+        if (loadDone === true) {
+            // lấy ra danh sách các sao ở đầu
+            _users = this.handleListContacts();
+        }
 
         return (
             <div className="list-contacts">
                 <div className="contacts-container">
                     {
-                        !loadDone ? 
-                        <Loader/> :
+                        !loadDone ?
+                            <Loader /> :
 
-                        contactItems.map((v) => {
-                            return <ContactItem />
-                        })
+                            _users.map(user => {
+                                return <ContactItem
+                                    idOwner={this.props.auth.uid}
+                                    user={user.value}
+                                    isStar={checkUserStar(stars, user)}
+                                    key={user.key}
+                                />
+                            })
                     }
                 </div>
             </div>

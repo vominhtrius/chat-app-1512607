@@ -37,7 +37,8 @@ class LeftNavBar extends Component {
     }
 
     render() {
-        const avatarUrl = "https://f22-org-zp.zdn.vn/009bacc892dc798220cd.jpg";
+        const avatarUrl = this.props.auth.photoURL;
+        
         console.log(this);
         return (
             <div className="left-nav-bar">

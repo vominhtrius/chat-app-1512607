@@ -97,6 +97,7 @@
     background-size: 100% 100%;
     width: 24px;
     height: 24px;
+    z-index: 100;
 }
 
 .tool-star .star-img:hover {
@@ -109,6 +110,7 @@
     background-size: 100% 100%;
     width: 24px;
     height: 24px;
+    z-index: 100;
 }
 
 .tool-star .star-filled-img:hover {

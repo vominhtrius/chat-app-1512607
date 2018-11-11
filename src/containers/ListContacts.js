@@ -3,10 +3,14 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firebaseConnect } from 'react-redux-firebase'
 import { userProfilesURI } from '../config/firebase';
+import {starInfoURI} from '../config/firebase';
+
+const listStarName = 'listStars';
 
 const mapStateToProps = state => ({
     auth: state.firebase.auth,
-    users: state.firebase.ordered.userProfiles
+    users: state.firebase.ordered.userProfiles,
+    stars: state.firebase.data[listStarName]
 })
 
 // const mapDispatchtoProps = dispatch => {
@@ -16,10 +20,14 @@ const mapStateToProps = state => ({
 // }
 
 export default compose(
+    connect(mapStateToProps),
     firebaseConnect((props) => [
-        { path: `/${userProfilesURI}` },
-        // {path: '/users_status', queryParams: ['orderByChild=time']}
-    ]), // withFirebase can also be used
-    // connect(({ firebase: { auth, ordered } }) => ({ auth, users: ordered.users }))
-    connect(mapStateToProps)
+        {
+            path: `/${userProfilesURI}`,
+        },
+        {
+            path: `/${starInfoURI}/${props.auth.uid}`,
+            storeAs: listStarName
+        }
+    ])
 )(ListContacts)

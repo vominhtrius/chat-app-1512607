@@ -22,7 +22,13 @@ class LoginPage extends Component {
                         <span className="login-form-title"> Chat App - 1512607 </span>
                         {
                             !_isLoaded ?
-                                <Loader /> :
+                                <div style={{
+                                    height: 70
+                                }}>
+                                    <Loader />
+                                </div>
+
+                                :
                                 <button
                                     className="btn-google"
                                     onClick={() => this.onClickLogin()}
