@@ -124,7 +124,3 @@
     color: blue;
 
 }
-.chat-input-content-wrapper > button:focus {
-    outline: none;
-    color: blue;
-}

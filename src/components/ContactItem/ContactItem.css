@@ -66,6 +66,7 @@
     white-space: nowrap;
     width:inherit;
     user-select: none;
+    margin-top: 5px;
 }
 
 .contact-info .contact-status-txt {
@@ -89,7 +90,7 @@
     height: 50px;
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 13px;
 }
 
 .tool-star .star-img {

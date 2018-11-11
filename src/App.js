@@ -7,8 +7,6 @@ import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 class App extends Component {
   render() {
-    console.log(this);
-
     const { auth } = this.props;
     const isLogin = isLoaded(auth) && !isEmpty(auth);
 

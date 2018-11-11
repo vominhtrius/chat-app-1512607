@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { firebaseConnect } from 'react-redux-firebase'
 import { userProfilesURI } from '../config/firebase';
 import {starInfoURI} from '../config/firebase';
+import {viewMessage} from '../actions/chat';
 
 const listStarName = 'listStars';
 
@@ -13,14 +14,14 @@ const mapStateToProps = state => ({
     stars: state.firebase.data[listStarName]
 })
 
-// const mapDispatchtoProps = dispatch => {
-//     return {
-//         clickView: (from, to) => dispatch(viewMessage(from, to)),
-//     }
-// }
+const mapDispatchtoProps = dispatch => {
+    return {
+        clickView: (from, to) => dispatch(viewMessage(from, to)),
+    }
+}
 
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchtoProps),
     firebaseConnect((props) => [
         {
             path: `/${userProfilesURI}`,

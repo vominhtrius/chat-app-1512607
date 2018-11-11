@@ -26,12 +26,12 @@ class LeftNavBar extends Component {
 
         const _isContact = btn === 'contact';
         const _isConversation = btn === 'conversation';
-        console.log(btn);
-
+        
         this.setState({
             isToggleContact: _isContact,
             isToggleConversation: _isConversation
         });
+
 
         // call actions
     }

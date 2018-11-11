@@ -4,13 +4,11 @@ import LeftNavBar from '../../containers/LeftNavBar';
 import UserInfo from '../UserInfo';
 import ListContacts from '../../containers/ListContacts';
 import ListConversations from '../ListConversations';
-import Chat from '../Chat';
+import Chat from '../../containers/Chat';
 import {onAuthStateChanged} from '../../functions/authHandle';
 
 class HomePage extends Component {
     componentDidMount() {
-        console.log("see you componentDidMount");
-
         onAuthStateChanged();
     }
 
@@ -23,7 +21,7 @@ class HomePage extends Component {
                     <ListContacts/>
                     <ListConversations/>
                 </div>
-                <Chat />
+                <Chat/>
             </div>
         );
     }

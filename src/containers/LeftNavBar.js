@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
     auth: state.firebase.auth,
 });
 
+
 export default compose(
     firebaseConnect(), // withFirebase can also be used
     connect(mapStateToProps)

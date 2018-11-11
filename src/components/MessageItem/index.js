@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
 import './MessageItem.css';
+import { formatChatTime } from '../../functions/helper';
 
 class MessageItem extends Component {
     render() {
-        const userName = 'Võ Minh Trí';
-        const leftAvatarUrl = "https://f22-org-zp.zdn.vn/009bacc892dc798220cd.jpg";
-        const rightAvatarUrl = "https://f22-org-zp.zdn.vn/009bacc892dc798220cd.jpg";
-        const status = 'Đang hoạt động';
-        const statusName = "online";
+        const { isLeft, mess, avatarURL } = this.props;
 
-        const isYou = (this.props.v % 2 === 0);
-
-        const text = `asdasdsadasdadc
-asdasd`;
-        return (isYou ?
+        return (!isLeft ?
             (
                 <div className="message-item">
                     <div className="message-wrapper right">
                         <div className="content-wrapper algin-right">
-                            <span className="text">{text}
+                            <span className="text">{mess.content}
                             </span>
                             <div className="send-time">
-                                1 phút trước
+                                {
+                                    formatChatTime(mess.time)
+                                }
                             </div>
                         </div>
                         <div className="message-avatar">
                             <div className="message-avatar-img"
-                                style={{ backgroundImage: `url(${rightAvatarUrl})` }}
+                                style={{ backgroundImage: `url(${avatarURL})` }}
                             >
                             </div>
                         </div>
@@ -38,15 +33,17 @@ asdasd`;
                     <div className="message-wrapper left">
                         <div className="message-avatar">
                             <div className="message-avatar-img"
-                                style={{ backgroundImage: `url(${leftAvatarUrl})` }}
+                                style={{ backgroundImage: `url(${avatarURL})` }}
                             >
                             </div>
                         </div>
                         <div className="content-wrapper algin-left">
-                            <span className="text">{text}
+                            <span className="text">{mess.content}
                             </span>
                             <div className="send-time">
-                                1 phút trước
+                                {
+                                    formatChatTime(mess.time)
+                                }
                             </div>
                         </div>
                     </div>

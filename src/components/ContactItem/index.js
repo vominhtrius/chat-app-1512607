@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
 import './ContactItem.css';
 import { addStarUser, removeStarUser } from '../../functions/chatHandle';
+import { getStatus } from '../../functions/helper';
 
 class ContactItem extends Component {
-
-    getStatus = (appInfos) => {
-        if (appInfos.isOnline === true)
-            return {
-                icon: "online",
-                text: "Đang hoạt động"
-            };
-
-        return {
-            icon: "offline",
-            text: "Onffline"
-        }
-
-        // return "offline";
-        // return "busy"
-    }
 
     onClickStar = () => {
 
@@ -27,19 +12,26 @@ class ContactItem extends Component {
         } else {
             removeStarUser(this.props.idOwner, this.props.user.appInfos.uid);
         }
+        
     }
 
     render() {
-        console.log(this);
+
         const { appInfos, avatarUrl, displayName } = this.props.user;
 
-        const status = this.getStatus(appInfos);
+        const status = getStatus(appInfos);
         const typeStar = this.props.isStar === true ? "star-filled-img" : "star-img";
 
         return (
-            <div className="contact-item">
-                <div className="contact-item-wrapper"
-                    onClick={() => alert("test")}>
+            <div className="contact-item"
+                onClick={() => {
+                    const uidFrom = this.props.idOwner;
+                    const uidTo = this.props.user.appInfos.uid;
+                    this.props.clickView(uidFrom, uidTo);
+                    this.forceUpdate();
+                }}
+            >
+                <div className="contact-item-wrapper">
                     <div className="contact-avatar">
                         <div className="contact-avatar-img"
                             style={{ backgroundImage: `url(${avatarUrl})` }}

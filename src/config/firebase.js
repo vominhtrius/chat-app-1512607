@@ -2,6 +2,7 @@ import firebase from 'firebase';
 export const userProfilesURI = 'userProfiles';
 export const appInfosURI = 'appInfos';
 export const starInfoURI = 'starInfo';
+export const messagesURI = 'messages';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDWaH9W5Uea84O_hIysZXd6NNwXS8quLZA",

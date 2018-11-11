@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ListContacts.css';
 import ContactItem from '../ContactItem';
-import { isLoaded, isEmpty } from 'react-redux-firebase'
+import { isLoaded } from 'react-redux-firebase'
 import Loader from '../Loader';
 import {compareUserWithName, checkUserStar} from '../../functions/helper';
 
@@ -16,10 +16,6 @@ class ListContacts extends Component {
         let _userNormal = [];
 
         const { users, stars } = this.props;
-
-        console.log("call here now");
-        console.log(stars);
-
         _usersStar = users.filter((user) => {
             return checkUserStar(stars, user);
         });
@@ -45,9 +41,6 @@ class ListContacts extends Component {
         const { users, stars } = this.props;
         const loadDone = isLoaded(users) && isLoaded(stars);
         let _users = [];
-        let _usersNormal = [];
-
-        console.log(this);
 
         if (loadDone === true) {
             // lấy ra danh sách các sao ở đầu
@@ -67,6 +60,7 @@ class ListContacts extends Component {
                                     user={user.value}
                                     isStar={checkUserStar(stars, user)}
                                     key={user.key}
+                                    clickView={this.props.clickView}
                                 />
                             })
                     }
