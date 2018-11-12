@@ -51,3 +51,35 @@ export const handleSendTextMessage = (from, to, message) => {
         }
     );
 }
+
+export const handleSendImageMessage = (from, to, imageUrl, nameImages) => {
+    let timeSend = new Date().getTime();
+    let _message = {
+        from: from,
+        to: to,
+        content: nameImages,
+        imageUrl: imageUrl,
+        time: timeSend,
+        type: 'image'
+    }
+
+    const channel = getChannel(from, to);
+
+    firebase.push(`/${messagesURI}/${channel}`, _message);
+
+    const fromRef = firebase.database().refFromURL(`${firebaseConfig.databaseURL}/${lastChatURI}/${from}/${to}`);
+    const toRef = firebase.database().refFromURL(`${firebaseConfig.databaseURL}/${lastChatURI}/${to}/${from}`);
+    fromRef.set(
+        {
+            lastTime: timeSend,
+            lastContent: nameImages
+        }
+    );
+
+    toRef.set(
+        {
+            lastTime: timeSend,
+            lastContent: nameImages
+        }
+    );
+}

@@ -79,14 +79,69 @@
 
 .chat-input-tools {
     width: 100%;
-    height: 40px;
-    background-color: red;
+    height: 38px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
-.chat-input-content-wrapper {
-    height: 60px;
+.input-tools-wrapper {
+    margin-left: 5px;
+    width: calc(100% - 5px);
+    height: 35px;
     display: flex;
     flex-direction: row;
+}
+
+.progress-bar-wrapper {
+    height: 3px;
+    width: 100%;
+}
+
+.progress {
+    background-color: white;
+    background-image: none;
+    background-repeat: no-repeat;
+    height: 3px;
+    box-shadow: none;
+    margin-bottom: 0px;
+}
+
+.progress-bar {
+    height: 3px;
+    background-image: linear-gradient(45deg, #00dbde, #fc00ff);
+    margin-bottom: 0px;
+}
+
+.input-tools-wrapper .item {
+    width: 50px;
+    height: 100%;
+}
+
+.input-tools-wrapper .upload-image {
+    background-size: 28px 28px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/icons/icon-img.png');
+}
+
+.input-tools-wrapper .upload-image>input[type=file] {
+    opacity: 0;
+}
+
+.input-tools-wrapper .upload-image:hover {
+    background-image: url('../../images/icons/icon-img-blue.png');
+}
+
+.input-tools-wrapper .cancel-upload-img {
+    background-size: 30px 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../images/icons/icon-cancel-img.png');
+}
+
+.input-tools-wrapper .cancel-upload-img:hover {
+    background-image: url('../../images/icons/icon-cancel-img-blue.png');    
 }
 
 .texterea-wrapper {
@@ -112,6 +167,12 @@
     outline: none;
 }
 
+.chat-input-content-wrapper {
+    display: flex;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+}
 .chat-input-content-wrapper > button {
     width: 100px;
     font-size: 16px;
@@ -122,5 +183,41 @@
 .chat-input-content-wrapper > button:hover {
     cursor: pointer;
     color: blue;
+}
 
+.input-tools-wrapper .item {
+    position: relative;
+}
+
+.input-tools-wrapper .item .tooltiptext {
+    visibility: hidden;
+    width: fit-content;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 5px 5px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.input-tools-wrapper .item .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.input-tools-wrapper .item:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

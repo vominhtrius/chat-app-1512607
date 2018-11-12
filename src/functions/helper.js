@@ -1,5 +1,30 @@
 import moment from 'moment';
 
+export const addTimeFileName = (fullName) => {
+    var regexAll = /([^\\]*)\.(\w+)$/;
+
+    let total = fullName.match(regexAll);
+    let time = new Date().getTime();
+    console.log(total);
+
+    if (total === undefined || total === null) {
+        return `${fullName}_${time}`;
+    }
+
+    let fileName = total[1];
+    let extension = total[2];
+
+    if ( fileName !== null && extension === null) {
+        return `${fileName}_${time}`;
+    }
+
+    if (extension !== null && fileName === null) {
+        return `${extension}_${time}`;
+    }
+
+    return `${fileName}_${time}.${extension}`;
+}
+
 export const compareUserWithName = (userKV_A, userKV_B) => {
     return userKV_A.value.displayName.localeCompare(userKV_B.value.displayName);
 }
@@ -22,7 +47,7 @@ export const getStatus = (appInfos) => {
 
     return {
         icon: "offline",
-        text: formatOnlineTime(appInfos.lastOnline)
+        text: formatTime('Truy cập ', appInfos.lastOnline)
     }
     // return "offline";
     // return "busy"
@@ -53,11 +78,11 @@ export const getTimeObject = (time) => {
     }
 }
 
-export const formatOnlineTime = (time) => {
+export const formatTime = (extra, time) => {
 
     var lastOnline = new Date(time);
 
-    let { seconds,
+    let {
         minutes,
         hours,
         days } = getTimeObject(time);
@@ -65,22 +90,18 @@ export const formatOnlineTime = (time) => {
     if (days > 7) {
         return lastOnline.toLocaleDateString();
     } else if (days > 0) {
-        return days + " ngày trước";
+        return `${extra}${days} ngày trước`;
     }
 
     if (hours > 0) {
-        return hours + " giờ trước";
+        return `${extra}${hours} giờ trước`;
     }
 
     if (minutes > 0) {
-        return minutes + " phút trước";
+        return `${extra}${minutes} phút trước`;
     }
 
-    if (seconds > 0) {
-        return seconds + " giây trước";
-    }
-
-    return "vài giây trước";
+    return `${extra}vài giây trước`;
 }
 
 export const formatChatTime = (time) => {

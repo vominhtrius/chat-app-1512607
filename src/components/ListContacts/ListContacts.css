@@ -23,8 +23,11 @@
 }
 
 .contacts-container {
+    width: inherit;
+    height: inherit;
     overflow: hidden;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .contacts-container:hover {

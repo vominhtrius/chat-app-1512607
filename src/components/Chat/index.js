@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './Chat.css';
 import ListMessages from '../../containers/ListMessages';
-import { getStatus } from '../../functions/helper';
-import { handleSendTextMessage } from '../../functions/chatHandle';
-
+import { getStatus, addTimeFileName } from '../../functions/helper';
+import { handleSendTextMessage, handleSendImageMessage } from '../../functions/chatHandle';
+import { ProgressBar } from 'react-bootstrap';
 
 class Chat extends Component {
     state = {
+        progress: 0,
+        isUpload: false,
+        uploadTask: null,
         message: ''
     }
 
@@ -33,6 +36,67 @@ class Chat extends Component {
         const { from, to } = this.props;
         handleSendTextMessage(from, to, this.state.message);
         this.setState({ message: '' });
+    }
+
+    handleUploadImage = (event) => {
+        const { firebase, from, to } = this.props;
+
+        let imageFile = event.target.files[0];
+
+        const imagesPath = 'images';
+
+        let fileName = addTimeFileName(imageFile.name);
+
+        let storageRef = firebase.storage().ref();
+        var imageStorageReft = storageRef.child(`${imagesPath}/${fileName}`);
+
+        var _thisChat = this;
+
+        var uploadTask = imageStorageReft.put(imageFile);
+
+        this.setState({
+            isUpload: true,
+            uploadTask: uploadTask
+        });
+
+        uploadTask.on('state_changed', function (snapshot) {
+            var _progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    _thisChat.setState({
+                        progress: _progress
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }, function (error) {
+
+            _thisChat.setState({
+                progress: 0,
+                isUpload: false
+            });
+
+        }, function () {
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+                // send messages
+                handleSendImageMessage(from, to, downloadURL, imageFile.name);
+                // update gui
+                _thisChat.setState({
+                    progress: 0,
+                    isUpload: false
+                });
+            });
+        });
+    }
+
+    cancelUploadImage() {
+        this.state.uploadTask.cancel();
     }
 
     render() {
@@ -72,8 +136,30 @@ class Chat extends Component {
 
                     <div className="chat-input">
                         <div className="chat-input-tools">
+                            <div className="input-tools-wrapper">
+                                {
+                                    !this.state.isUpload ?
+                                        <div className="item upload-image">
+                                            <input type="file"
+                                                accept="image/*"
+                                                onChange={(e) => this.handleUploadImage(e)}
+                                            >
+                                            </input>
+                                            <span class="tooltiptext">Send image !</span>
+                                        </div>
+                                        :
+                                        <div className="item cancel-upload-img"
+                                            onClick={() => this.cancelUploadImage()}
+                                        >
+                                            <span class="tooltiptext">Cancel sending image</span>
+                                        </div>
+                                }
+                            </div>
+                            <div className="progress-bar-wrapper">
+                                <ProgressBar now={this.state.progress} srOnly>
+                                </ProgressBar>
+                            </div>
                         </div>
-
                         <div className="chat-input-content">
                             <div className="chat-input-content-wrapper">
                                 <div className="texterea-wrapper">
@@ -81,7 +167,6 @@ class Chat extends Component {
                                         value={this.state.message}
                                         onChange={this.handleMessage}
                                     >
-
                                     </textarea>
                                 </div>
                                 <button disabled={!this.props.loadMessDone}
@@ -89,7 +174,6 @@ class Chat extends Component {
                                     Gửi
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 </div>

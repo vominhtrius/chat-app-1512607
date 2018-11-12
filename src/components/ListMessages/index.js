@@ -6,10 +6,6 @@ import { isLoaded } from 'react-redux-firebase';
 
 class ListMessages extends Component {
 
-    state = {
-        timeLoad: 0
-    }
-
     componentDidUpdate() {
 
         if (this.props.loadMessDone === false) {
@@ -24,7 +20,8 @@ class ListMessages extends Component {
         this.scrollMessageToBottom();
     }
 
-    scrollMessageToBottom() {
+    scrollMessageToBottom = () => {
+        console.log("callllll");
         if (this.refMessage) {
             this.refMessage.scrollTop = this.refMessage.scrollHeight;
         }
@@ -67,6 +64,7 @@ class ListMessages extends Component {
                                     avatarURL={url}
                                     mess={mess.value}
                                     key={mess.key}
+                                    scrollBottom = {this.scrollMessageToBottom}
                                 />
                             })
                         }

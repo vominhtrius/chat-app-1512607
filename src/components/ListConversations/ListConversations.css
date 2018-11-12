@@ -9,19 +9,17 @@
 
 .conversations-container::-webkit-scrollbar-thumb {
     background: linear-gradient(45deg, #00dbde, #fc00ff);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .list-conversations {
     width: 320px;
+    height: calc(100vh - 70px - 1px); /*+ 1 cho border*/
+    min-height: calc(100vh - 70px - 1px);
+    max-height: calc(100vh - 70px - 1px);
     background-color: white;
-    height: calc(100vh - 71px);
-    display: flex;
-    border-radius: 6px;
-}
-
-.non-display {
-    display: none;
+    border-radius: 5px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .conversations-container {

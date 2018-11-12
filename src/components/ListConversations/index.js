@@ -23,6 +23,10 @@ class ListConversations extends Component {
 
         // lấy ra user star
         _userChatStars = _userChats.filter((userChat) => {
+            console.log(userChat);
+            console.log(stars);
+            if (stars === null) return false;
+
             return stars[userChat.lastChat.key] !== undefined;
         });
 
@@ -34,6 +38,8 @@ class ListConversations extends Component {
         });
 
         _userChatNormals = _userChats.filter((userChat) => {
+            if (stars === null) return true;
+
             return stars[userChat.lastChat.key] === undefined;
         });
 
@@ -57,7 +63,6 @@ class ListConversations extends Component {
 
         if (loadDone === true) {
             convers = this.handleListConversation();
-            console.log(convers);
         }
 
         return (
@@ -72,6 +77,7 @@ class ListConversations extends Component {
                                 conver={conver}
                                 isStar={checkUserStar(stars, conver.user)}
                                 clickView = {this.props.clickView}
+                                key={conver.lastChat.key}
                                 />
                             })
                     }

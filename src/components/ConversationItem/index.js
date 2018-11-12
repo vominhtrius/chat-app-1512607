@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ConversationItem.css';
-import { getStatus, formatOnlineTime } from '../../functions/helper';
+import { getStatus, formatTime } from '../../functions/helper';
 import { addStarUser, removeStarUser } from '../../functions/chatHandle';
 
 class ConversationItem extends Component {
@@ -15,22 +15,19 @@ class ConversationItem extends Component {
     }
 
     render() {
-        console.log(this);
         const { user, lastChat } = this.props.conver;
         const avatarUrl = user.avatarUrl;
         const typeStar = (true === this.props.isStar) ? "star-filled-img" : "star-img";
         const status = getStatus(user.appInfos);
         const displayName = user.displayName;
         const lastContent = lastChat.value.lastContent;
-        const lastTime = formatOnlineTime(lastChat.value.lastTime);
+        const lastTime = formatTime('',lastChat.value.lastTime);
 
         return (
             <div className="conversation-item"
                 onClick={() => {
                     const uidFrom = this.props.idOwner;
                     const uidTo = lastChat.key;
-                    console.log(uidFrom);
-                    console.log(uidTo);
                     this.props.clickView(uidFrom, uidTo);
                 }}
             >
