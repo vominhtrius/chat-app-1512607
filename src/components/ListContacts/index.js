@@ -17,7 +17,7 @@ class ListContacts extends Component {
 
         const { users, stars } = this.props;
         _usersStar = users.filter((user) => {
-            return checkUserStar(stars, user);
+            return checkUserStar(stars, user.value);
         });
 
         _usersStar.sort(compareUserWithName)
@@ -41,7 +41,6 @@ class ListContacts extends Component {
         const { users, stars, isToggle } = this.props;
         const loadDone = isLoaded(users) && isLoaded(stars);
         let _users = [];
-        console.log(this);
 
         if (loadDone === true) {
             // lấy ra danh sách các sao ở đầu
@@ -63,7 +62,7 @@ class ListContacts extends Component {
                                         return <ContactItem
                                             idOwner={this.props.auth.uid}
                                             user={user.value}
-                                            isStar={checkUserStar(stars, user)}
+                                            isStar={checkUserStar(stars, user.value)}
                                             key={user.key}
                                             clickView={this.props.clickView}
                                         />

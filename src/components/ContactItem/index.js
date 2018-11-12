@@ -12,7 +12,6 @@ class ContactItem extends Component {
         } else {
             removeStarUser(this.props.idOwner, this.props.user.appInfos.uid);
         }
-        
     }
 
     render() {
@@ -28,7 +27,6 @@ class ContactItem extends Component {
                     const uidFrom = this.props.idOwner;
                     const uidTo = this.props.user.appInfos.uid;
                     this.props.clickView(uidFrom, uidTo);
-                    this.forceUpdate();
                 }}
             >
                 <div className="contact-item-wrapper">

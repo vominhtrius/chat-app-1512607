@@ -26,6 +26,7 @@
 
 .conversations-container {
     width: inherit;
+    height: inherit;
     overflow: hidden;
     display: flex;
     flex-direction: column;

@@ -1,14 +1,39 @@
 import React, { Component } from 'react';
 import './ConversationItem.css';
+import { getStatus, formatOnlineTime } from '../../functions/helper';
+import { addStarUser, removeStarUser } from '../../functions/chatHandle';
 
 class ConversationItem extends Component {
 
+    onClickStar = () => {
+
+        if (this.props.isStar === false) {
+            addStarUser(this.props.idOwner, this.props.conver.user.appInfos.uid);
+        } else {
+            removeStarUser(this.props.idOwner, this.props.conver.user.appInfos.uid);
+        }
+    }
+
     render() {
-        const avatarUrl = "https://f22-org-zp.zdn.vn/009bacc892dc798220cd.jpg";
-        const typeStar = (true === false) ? "star-filled-img" : "star-img";
-        const statusName = "online";
+        console.log(this);
+        const { user, lastChat } = this.props.conver;
+        const avatarUrl = user.avatarUrl;
+        const typeStar = (true === this.props.isStar) ? "star-filled-img" : "star-img";
+        const status = getStatus(user.appInfos);
+        const displayName = user.displayName;
+        const lastContent = lastChat.value.lastContent;
+        const lastTime = formatOnlineTime(lastChat.value.lastTime);
+
         return (
-            <div className="conversation-item">
+            <div className="conversation-item"
+                onClick={() => {
+                    const uidFrom = this.props.idOwner;
+                    const uidTo = lastChat.key;
+                    console.log(uidFrom);
+                    console.log(uidTo);
+                    this.props.clickView(uidFrom, uidTo);
+                }}
+            >
                 <div className="wrapper">
                     <div className="item-avatar"
                         onClick={this.onClickConversation}
@@ -16,7 +41,7 @@ class ConversationItem extends Component {
                         <div className="item-avatar-img"
                             style={{ backgroundImage: `url(${avatarUrl})` }}
                         >
-                            <div className={"item-status-icon " + statusName} >
+                            <div className={"item-status-icon " + status.icon} >
                             </div>
                         </div>
                     </div>
@@ -24,24 +49,33 @@ class ConversationItem extends Component {
                         onClick={this.onClickConversation}
                     >
                         <div className="username-info">
-                            Võ Minh Trí
+                            {
+                                displayName
+                            }
                         </div>
                         <div className="content-info">
-                            content      asd asdsadasd asd asd asd asd as ads
+                            {
+                                lastContent
+                            }
                         </div>
                     </div>
 
                     <div className="tool">
                         <div className="star">
                             <div id={typeStar}
-                                onClick={this.onClickStar}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    this.onClickStar();
+                                }}
                             >
                             </div>
                         </div>
                         <div className="time"
                             onClick={this.onClickConversation}
                         >
-                            5 ngày trước
+                            {
+                                lastTime
+                            }
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import {
-    firebaseConfig, userProfilesURI, lastChatURI,
+    firebaseConfig, lastChatURI,
     starInfoURI, messagesURI
 } from '../config/firebase';
 
@@ -35,8 +35,8 @@ export const handleSendTextMessage = (from, to, message) => {
 
     firebase.push(`/${messagesURI}/${channel}`, _message);
 
-    const fromRef = firebase.database().refFromURL(`${firebaseConfig.databaseURL}/${userProfilesURI}/${from}/${lastChatURI}/${to}`);
-    const toRef = firebase.database().refFromURL(`${firebaseConfig.databaseURL}/${userProfilesURI}/${to}/${lastChatURI}/${from}`);
+    const fromRef = firebase.database().refFromURL(`${firebaseConfig.databaseURL}/${lastChatURI}/${from}/${to}`);
+    const toRef = firebase.database().refFromURL(`${firebaseConfig.databaseURL}/${lastChatURI}/${to}/${from}`);
     fromRef.set(
         {
             lastTime: timeSend,

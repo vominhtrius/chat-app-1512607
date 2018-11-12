@@ -3,7 +3,7 @@ import './HomePage.css';
 import LeftNavBar from '../../containers/LeftNavBar';
 import UserInfo from '../UserInfo';
 import ListContacts from '../../containers/ListContacts';
-import ListConversations from '../ListConversations';
+import ListConversations from '../../containers/ListConversations';
 import Chat from '../../containers/Chat';
 import { onAuthStateChanged } from '../../functions/authHandle';
 
@@ -20,7 +20,8 @@ class HomePage extends Component {
                     <UserInfo />
                     {
                         this.props.isToggleContact ?
-                            <ListContacts /> : <ListConversations />
+                            <ListContacts /> :
+                            <ListConversations />
                     }
                 </div>
                 <Chat />

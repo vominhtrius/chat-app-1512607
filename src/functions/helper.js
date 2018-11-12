@@ -5,7 +5,7 @@ export const compareUserWithName = (userKV_A, userKV_B) => {
 }
 
 export const checkUserStar = (stars, user) => {
-    const uid = user.key;
+    const uid = user.appInfos.uid;
 
     if (stars === null) return false;
 
@@ -52,6 +52,7 @@ export const getTimeObject = (time) => {
         days
     }
 }
+
 export const formatOnlineTime = (time) => {
 
     var lastOnline = new Date(time);
@@ -79,7 +80,7 @@ export const formatOnlineTime = (time) => {
         return seconds + " giây trước";
     }
 
-    return "1 giây trước";
+    return "vài giây trước";
 }
 
 export const formatChatTime = (time) => {
