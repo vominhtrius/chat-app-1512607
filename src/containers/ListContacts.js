@@ -11,7 +11,8 @@ const listStarName = 'listStars';
 const mapStateToProps = state => ({
     auth: state.firebase.auth,
     users: state.firebase.ordered.userProfiles,
-    stars: state.firebase.data[listStarName]
+    stars: state.firebase.data[listStarName],
+    isToggle: state.event.isToggleContact
 })
 
 const mapDispatchtoProps = dispatch => {

@@ -3,7 +3,7 @@ import './ListContacts.css';
 import ContactItem from '../ContactItem';
 import { isLoaded } from 'react-redux-firebase'
 import Loader from '../Loader';
-import {compareUserWithName, checkUserStar} from '../../functions/helper';
+import { compareUserWithName, checkUserStar } from '../../functions/helper';
 
 class ListContacts extends Component {
 
@@ -38,9 +38,10 @@ class ListContacts extends Component {
     }
 
     render() {
-        const { users, stars } = this.props;
+        const { users, stars, isToggle } = this.props;
         const loadDone = isLoaded(users) && isLoaded(stars);
         let _users = [];
+        console.log(this);
 
         if (loadDone === true) {
             // lấy ra danh sách các sao ở đầu
@@ -49,22 +50,27 @@ class ListContacts extends Component {
 
         return (
             <div className="list-contacts">
-                <div className="contacts-container">
-                    {
-                        !loadDone ?
-                            <Loader /> :
+                {
+                    !isToggle ?
+                        <div className="contacts-container">
+                        </div> :
+                        <div className="contacts-container">
+                            {
+                                !loadDone ?
+                                    <Loader /> :
 
-                            _users.map(user => {
-                                return <ContactItem
-                                    idOwner={this.props.auth.uid}
-                                    user={user.value}
-                                    isStar={checkUserStar(stars, user)}
-                                    key={user.key}
-                                    clickView={this.props.clickView}
-                                />
-                            })
-                    }
-                </div>
+                                    _users.map(user => {
+                                        return <ContactItem
+                                            idOwner={this.props.auth.uid}
+                                            user={user.value}
+                                            isStar={checkUserStar(stars, user)}
+                                            key={user.key}
+                                            clickView={this.props.clickView}
+                                        />
+                                    })
+                            }
+                        </div>
+                }
             </div>
         );
     }

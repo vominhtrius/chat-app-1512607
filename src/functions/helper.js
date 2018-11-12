@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const compareUserWithName = (userKV_A, userKV_B) => {
     return userKV_A.value.displayName.localeCompare(userKV_B.value.displayName);
 }
@@ -81,30 +83,5 @@ export const formatOnlineTime = (time) => {
 }
 
 export const formatChatTime = (time) => {
-    var lastOnline = new Date(time);
-
-    let { seconds,
-        minutes,
-        hours,
-        days } = getTimeObject(time);
-
-    if (days > 7) {
-        return lastOnline.toLocaleDateString();
-    } else if (days > 0) {
-        return days + " ngày trước";
-    }
-
-    if (hours > 0) {
-        return hours + " giờ trước";
-    }
-
-    if (minutes > 0) {
-        return minutes + " phút trước";
-    }
-
-    if (seconds > 0) {
-        return seconds + " giây trước";
-    }
-    
-    return 'Vừa gửi';
+    return moment(time).format('MM/DD/YY, HH:mm')
 }

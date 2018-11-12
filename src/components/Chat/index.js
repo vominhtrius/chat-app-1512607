@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './Chat.css';
 import ListMessages from '../../containers/ListMessages';
-import { isLoaded } from 'react-redux-firebase';
-import Loader from '../Loader';
-import { getStatus, getChannel } from '../../functions/helper';
-import { messagesURI } from '../../config/firebase';
+import { getStatus } from '../../functions/helper';
+import { handleSendTextMessage } from '../../functions/chatHandle';
 
 
 class Chat extends Component {
@@ -32,24 +30,15 @@ class Chat extends Component {
         if (this.state.message === '')
             return;
 
-        const { firebase, from, to } = this.props;
-        const channel = getChannel(from, to);
-        let _message = {
-            from: from,
-            to: to,
-            content: this.state.message,
-            time: firebase.database.ServerValue.TIMESTAMP,
-            type: 'text'
-        }
-
+        const { from, to } = this.props;
+        handleSendTextMessage(from, to, this.state.message);
         this.setState({ message: '' });
-        firebase.push(`/${messagesURI}/${channel}`, _message);
     }
 
     render() {
         let user = null;
         let isView = this.props.to !== null;
-        
+
         if (isView) {
             user = this.getUserInfoToRender();
         }

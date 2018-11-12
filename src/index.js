@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { createStore, compose } from 'redux'
 import { reactReduxFirebase } from 'react-redux-firebase'
 import firebase from 'firebase'
-import {rrfConfig, firebaseConfig} from './config/firebase';
+import {rrfConfig} from './config/firebase';
 import rootReducer from './reducers/rootReducer';
 
 const createStoreWithFirebase = compose(

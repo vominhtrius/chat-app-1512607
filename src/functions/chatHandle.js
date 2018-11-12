@@ -1,5 +1,10 @@
 import firebase from 'firebase';
-import { firebaseConfig, userProfilesURI, appInfosURI, starInfoURI } from '../config/firebase';
+import {
+    firebaseConfig, userProfilesURI, lastChatURI,
+    starInfoURI, messagesURI
+} from '../config/firebase';
+
+import { getChannel } from './helper';
 
 export const addStarUser = (ownerUID, starID) => {
     const db = firebase.database();
@@ -14,4 +19,35 @@ export const removeStarUser = (ownerUID, uid) => {
     const db = firebase.database();
     let starRef = db.refFromURL(`${firebaseConfig.databaseURL}/${starInfoURI}/${ownerUID}/${uid}`);
     starRef.remove();
+}
+
+export const handleSendTextMessage = (from, to, message) => {
+    let timeSend = new Date().getTime();
+    let _message = {
+        from: from,
+        to: to,
+        content: message,
+        time: timeSend,
+        type: 'text'
+    }
+
+    const channel = getChannel(from, to);
+
+    firebase.push(`/${messagesURI}/${channel}`, _message);
+
+    const fromRef = firebase.database().refFromURL(`${firebaseConfig.databaseURL}/${userProfilesURI}/${from}/${lastChatURI}/${to}`);
+    const toRef = firebase.database().refFromURL(`${firebaseConfig.databaseURL}/${userProfilesURI}/${to}/${lastChatURI}/${from}`);
+    fromRef.set(
+        {
+            lastTime: timeSend,
+            lastContent: message
+        }
+    );
+
+    toRef.set(
+        {
+            lastTime: timeSend,
+            lastContent: message
+        }
+    );
 }
