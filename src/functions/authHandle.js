@@ -13,8 +13,6 @@ export const onAuthStateChanged = () => {
             connectRef.on('value', function (snapshot) {
                 if (snapshot.val()) {
 
-                    console.log(snapshot.val());
-                    console.log(user);
                     ref.onDisconnect().set({
                         avatarUrl: user.photoURL,
                         displayName: user.displayName,

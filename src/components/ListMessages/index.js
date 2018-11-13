@@ -21,7 +21,6 @@ class ListMessages extends Component {
     }
 
     scrollMessageToBottom = () => {
-        console.log("callllll");
         if (this.refMessage) {
             this.refMessage.scrollTop = this.refMessage.scrollHeight;
         }

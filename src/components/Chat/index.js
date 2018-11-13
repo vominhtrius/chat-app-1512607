@@ -61,7 +61,7 @@ class Chat extends Component {
 
         uploadTask.on('state_changed', function (snapshot) {
             var _progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            
+
             _thisChat.setState({
                 progress: _progress
             });
@@ -167,6 +167,14 @@ class Chat extends Component {
                                     <textarea placeholder="Nhập tin nhắn..."
                                         value={this.state.message}
                                         onChange={this.handleMessage}
+                                        onKeyPress={(e) => {
+                                            if (e.which === 13 && e.shiftKey) {
+                                                
+                                            } else if (e.which === 13) {
+                                                e.preventDefault();
+                                                this.onSendMessages();
+                                            }
+                                        }}
                                     >
                                     </textarea>
                                 </div>

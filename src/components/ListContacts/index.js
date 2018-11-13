@@ -31,7 +31,6 @@ class ListContacts extends Component {
 
             return this.props.auth.uid !== uid;
         });
-        console.log(_userNormal);
 
         _userNormal.sort(compareUserWithName);
 
@@ -42,7 +41,6 @@ class ListContacts extends Component {
         const { users, stars, isToggle, valueFilter } = this.props;
         const loadDone = isLoaded(users) && isLoaded(stars);
         let _users = [];
-        console.log(this);
 
         if (loadDone === true) {
             // lấy ra danh sách các sao ở đầu
