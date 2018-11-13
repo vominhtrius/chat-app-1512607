@@ -12,7 +12,8 @@ const mapStateToProps = state => ({
     auth: state.firebase.auth,
     users: state.firebase.ordered.userProfiles,
     stars: state.firebase.data[listStarName],
-    isToggle: state.event.isToggleContact
+    isToggle: state.event.isToggleContact,
+    valueFilter: state.event.valueFilter
 })
 
 const mapDispatchtoProps = dispatch => {

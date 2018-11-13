@@ -17,7 +17,7 @@ class HomePage extends Component {
             <div className="home-page">
                 <LeftNavBar />
                 <div className="wrapper">
-                    <UserInfo />
+                    <UserInfo filterName={this.props.filterName} />
                     {
                         this.props.isToggleContact ?
                             <ListContacts /> :

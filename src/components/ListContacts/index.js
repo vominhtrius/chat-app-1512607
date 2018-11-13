@@ -38,13 +38,22 @@ class ListContacts extends Component {
     }
 
     render() {
-        const { users, stars, isToggle } = this.props;
+        const { users, stars, isToggle, valueFilter } = this.props;
         const loadDone = isLoaded(users) && isLoaded(stars);
         let _users = [];
+        console.log(this);
 
         if (loadDone === true) {
             // lấy ra danh sách các sao ở đầu
             _users = this.handleListContacts();
+            if (valueFilter !== null && valueFilter !== "") {
+                _users = _users.filter((user) => {
+                    return user.value.displayName.toLowerCase()
+                        .search(valueFilter.toLowerCase()) !== -1;
+                });
+            }
+            console.log(_users);
+
         }
 
         return (

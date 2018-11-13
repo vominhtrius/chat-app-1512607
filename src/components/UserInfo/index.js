@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import './UserInfo.css';
+import SearchInput from 'react-search-input'
 
 class UserInfo extends Component {
-
-    handleContactFilter = () => {
-        console.log("Enter, i see you");
-    }
-
     render() {
         return (
             <div className="user-info">
@@ -14,7 +10,8 @@ class UserInfo extends Component {
                     Võ Minh Trí
                 </div>
                 <div className="contacts-search-bar">
-                    <input className="search-input"
+                    <SearchInput className="search-input" onChange={(value) => this.props.filterName(value)} />
+                    {/* <input className="search-input"
                         placeholder="Tìm kiếm..."
                         onKeyPress={(e) => {
                             if (e.key === 'Enter') {
@@ -22,11 +19,7 @@ class UserInfo extends Component {
                             }
                         }}>
 
-                    </input>
-                </div>
-
-                <div className="contacts-statictis">
-                    Online: (10/20)
+                    </input> */}
                 </div>
             </div>
         );

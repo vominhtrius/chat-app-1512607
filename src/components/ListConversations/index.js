@@ -23,8 +23,6 @@ class ListConversations extends Component {
 
         // lấy ra user star
         _userChatStars = _userChats.filter((userChat) => {
-            console.log(userChat);
-            console.log(stars);
             if (stars === null) return false;
 
             return stars[userChat.lastChat.key] !== undefined;
@@ -55,7 +53,7 @@ class ListConversations extends Component {
     }
 
     render() {
-        const {stars} = this.props;
+        const { stars, valueFilter } = this.props;
 
         let convers = [];
         const loadDone = isLoaded(this.props.users) &&
@@ -63,6 +61,12 @@ class ListConversations extends Component {
 
         if (loadDone === true) {
             convers = this.handleListConversation();
+            if (valueFilter !== null && valueFilter !== "") {
+                convers = convers.filter((conver) => {
+                    return conver.user.displayName.toLowerCase()
+                        .search(valueFilter.toLowerCase()) !== -1;
+                });
+            }
         }
 
         return (
@@ -72,12 +76,12 @@ class ListConversations extends Component {
                         !loadDone ?
                             <Loader /> :
                             convers.map((conver) => {
-                                return <ConversationItem 
-                                idOwner={this.props.auth.uid}
-                                conver={conver}
-                                isStar={checkUserStar(stars, conver.user)}
-                                clickView = {this.props.clickView}
-                                key={conver.lastChat.key}
+                                return <ConversationItem
+                                    idOwner={this.props.auth.uid}
+                                    conver={conver}
+                                    isStar={checkUserStar(stars, conver.user)}
+                                    clickView={this.props.clickView}
+                                    key={conver.lastChat.key}
                                 />
                             })
                     }

@@ -61,15 +61,16 @@ class Chat extends Component {
 
         uploadTask.on('state_changed', function (snapshot) {
             var _progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            
+            _thisChat.setState({
+                progress: _progress
+            });
 
             switch (snapshot.state) {
                 case firebase.storage.TaskState.PAUSED: // or 'paused'
                     console.log('Upload is paused');
                     break;
                 case firebase.storage.TaskState.RUNNING: // or 'running'
-                    _thisChat.setState({
-                        progress: _progress
-                    });
                     break;
                 default:
                     break;

@@ -1,8 +1,9 @@
-import { VIEW_LIST_CONTACTS, VIEW_LIST_CONVERSATIONS } from '../actions/event';
+import { VIEW_LIST_CONTACTS, VIEW_LIST_CONVERSATIONS, FILTER_NAME } from '../actions/event';
 
 const initState = {
     isToggleContact: false,
     isToggleConversation: true,
+    valueFilter: '',
 }
 
 const event = (state = initState, action) => {
@@ -12,12 +13,19 @@ const event = (state = initState, action) => {
                 ...state,
                 isToggleContact: true,
                 isToggleConversation: false
-            }
+            };
         case VIEW_LIST_CONVERSATIONS:
             return {
                 ...state,
                 isToggleContact: false,
                 isToggleConversation: true
+            };
+        case FILTER_NAME:
+            {
+                return {
+                    ...state,
+                    valueFilter: action.value
+                };
             }
         default:
             return state;
