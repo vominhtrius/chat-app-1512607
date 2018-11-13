@@ -13,13 +13,15 @@ class ListConversations extends Component {
         let _userChats = [];
         const { users, stars, lastChats } = this.props;
 
-        _userChats = lastChats.map((lastChat) => {
-            const user = users[lastChat.key];
-            return {
-                user,
-                lastChat
-            }
-        });
+        if (lastChats !== null) {
+            _userChats = lastChats.map((lastChat) => {
+                const user = users[lastChat.key];
+                return {
+                    user,
+                    lastChat
+                }
+            });
+        }
 
         // lấy ra user star
         _userChatStars = _userChats.filter((userChat) => {

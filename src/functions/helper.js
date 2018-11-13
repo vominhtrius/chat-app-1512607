@@ -26,6 +26,9 @@ export const addTimeFileName = (fullName) => {
 }
 
 export const compareUserWithName = (userKV_A, userKV_B) => {
+    console.log(userKV_A);
+    console.log(userKV_B);
+
     return userKV_A.value.displayName.localeCompare(userKV_B.value.displayName);
 }
 

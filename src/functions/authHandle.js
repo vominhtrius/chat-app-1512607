@@ -8,21 +8,35 @@ export const onAuthStateChanged = () => {
 
             const db = firebase.database();
             let connectRef = db.refFromURL(`${firebaseConfig.databaseURL}/.info/connected`);
-            let appInfoRef = db.refFromURL(`${firebaseConfig.databaseURL}/${userProfilesURI}/${user.uid}/${appInfosURI}`);
+            let ref = db.refFromURL(`${firebaseConfig.databaseURL}/${userProfilesURI}/${user.uid}`);
 
             connectRef.on('value', function (snapshot) {
                 if (snapshot.val()) {
 
-                    appInfoRef.onDisconnect().set({
-                        uid: user.uid,
-                        lastOnline: firebase.database.ServerValue.TIMESTAMP,
-                        isOnline: false,
+                    console.log(snapshot.val());
+                    console.log(user);
+                    ref.onDisconnect().set({
+                        avatarUrl: user.photoURL,
+                        displayName: user.displayName,
+                        email: user.email,
+                        appInfos: {
+                            uid: user.uid,
+                            lastOnline: firebase.database.ServerValue.TIMESTAMP,
+                            isOnline: false,
+                        },
+                        providerData: user.providerData
                     });
 
-                    appInfoRef.set({
-                        uid: user.uid,
-                        lastOnline: firebase.database.ServerValue.TIMESTAMP,
-                        isOnline: true,
+                    ref.set({
+                        avatarUrl: user.photoURL,
+                        displayName: user.displayName,
+                        email: user.email,
+                        appInfos: {
+                            uid: user.uid,
+                            lastOnline: firebase.database.ServerValue.TIMESTAMP,
+                            isOnline: true,
+                        },
+                        providerData: user.providerData
                     });
                 }
             });

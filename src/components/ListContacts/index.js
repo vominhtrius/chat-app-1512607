@@ -31,6 +31,7 @@ class ListContacts extends Component {
 
             return this.props.auth.uid !== uid;
         });
+        console.log(_userNormal);
 
         _userNormal.sort(compareUserWithName);
 
